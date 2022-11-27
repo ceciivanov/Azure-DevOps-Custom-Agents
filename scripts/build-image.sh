@@ -51,4 +51,4 @@ packer build \
     -var "subscription_id=$subscriptionId" \
     -var "location=$location" \
     -var "managed_image_resource_group_name=$resourceGroup" \
-    -var "managed_image_name=$managedImageName" $packerFile
+    -var "managed_image_name=$managedImageName" ./imageTemplate/$packerFile

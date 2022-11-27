@@ -1,11 +1,13 @@
 #!/bin/bash
 
-AzureDevOpsURL=$1
-AzureDevOpsPAT=$2
-AgentPoolName=$3
+
 VMUserName=$4
 
 cd /home/$VMUserName
+
+AzureDevOpsURL=$1
+AzureDevOpsPAT=$2
+AgentPoolName=$3
 
 # define required arguments for the config
 # AzureDevOpsPAT=fnnzkwfgwqvdvejobyzuxrmu7rvotu6krrtl5q7ge3426caugaqq
