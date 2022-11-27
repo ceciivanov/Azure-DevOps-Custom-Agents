@@ -7,7 +7,7 @@ resourceGroup="rg-ey-test"
 imageName="linuxImage"
 scaleSetName="Agent"
 location="northeurope"
-fileName="./install-agent.sh"
+fileName="install-agent.sh"
 
 storageAccount=''; for i in {0..9}; do storageAccount+=$(printf "%x" $(($RANDOM%16)) ); done;
 availability=$(az storage account check-name --name $storageAccount --query nameAvailable)
@@ -35,4 +35,4 @@ az vmss extension set \
     --name customScript \
     --resource-group $resourceGroup \
     --vmss-name $scaleSetName \
-    --settings '{"fileUris": ["'${fileUri}'"], "commandToExecute": "sh '$fileName'"}'
+    --settings '{"fileUris": ["'${fileUri}'"], "commandToExecute": "bash './$fileName'"}'
