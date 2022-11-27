@@ -1,12 +1,17 @@
 #!/bin/bash
 
-cd /home/agentadmin
+AzureDevOpsURL=$1
+AzureDevOpsPAT=$2
+AgentPoolName=$3
+VMUserName=$4
+
+cd /home/$VMUserName
 
 # define required arguments for the config
-AzureDevOpsPAT=fnnzkwfgwqvdvejobyzuxrmu7rvotu6krrtl5q7ge3426caugaqq
-AzureDevOpsURL=https://dev.azure.com/CIvanov0344
-AgentPoolName=customAgents
-VMadmin=agentadmin
+# AzureDevOpsPAT=fnnzkwfgwqvdvejobyzuxrmu7rvotu6krrtl5q7ge3426caugaqq
+# AzureDevOpsURL=https://dev.azure.com/CIvanov0344
+# AgentPoolName=customAgents
+# VMadmin=agentadmin
 
 # Creates directory & download ADO agent install files
 mkdir myagent && cd myagent
@@ -15,11 +20,11 @@ mkdir myagent && cd myagent
 wget https://vstsagentpackage.azureedge.net/agent/2.213.2/vsts-agent-linux-x64-2.213.2.tar.gz
 tar zxf vsts-agent-linux-x64-2.213.2.tar.gz
 
-chown -R agentadmin:agentadmin /home/agentadmin/myagent
+chown -R $VMUserName:$VMUserName /home/$VMUserName/myagent
 
 echo "running config.sh"
 
-su - agentadmin -c "cd /home/agentadmin/myagent && ./config.sh --unattended \
+su - $VMUserName -c "cd /home/$VMUserName/myagent && ./config.sh --unattended \
   --agent ${AZP_AGENT_NAME:-$(hostname)} \
   --url $AzureDevOpsURL \
   --auth PAT \
@@ -28,7 +33,7 @@ su - agentadmin -c "cd /home/agentadmin/myagent && ./config.sh --unattended \
   --replace \
   --acceptTeeEula"
 
-cd /home/agentadmin/myagent
+cd /home/$VMUserName/myagent
 
 echo "agent configured start service"
 

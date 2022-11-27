@@ -1,13 +1,19 @@
 #!/bin/bash
 
-VMUserName="agentadmin"
-VMUserPassword="Agent001Pa!!"
-VMName="agent"
-resourceGroup="rg-ey-test"
-imageName="linuxImage"
-scaleSetName="Agent"
-location="northeurope"
-fileName="install-agent.sh"
+# VMUserName="agentadmin"
+# resourceGroup="rg-ey-test"
+# scaleSetName="Agent"
+# location="northeurope"
+# fileName="install-agent.sh"
+
+location=$1
+resourceGroup=$2
+scaleSetName=$3
+VMUserName=$4
+fileName=$5
+AgentPoolName=$6
+AzureDevOpsPAT=$7
+AzureDevOpsURL=$8
 
 storageAccount=''; for i in {0..9}; do storageAccount+=$(printf "%x" $(($RANDOM%16)) ); done;
 availability=$(az storage account check-name --name $storageAccount --query nameAvailable)
@@ -35,4 +41,4 @@ az vmss extension set \
     --name customScript \
     --resource-group $resourceGroup \
     --vmss-name $scaleSetName \
-    --settings '{"fileUris": ["'${fileUri}'"], "commandToExecute": "bash './$fileName'"}'
+    --settings '{"fileUris": ["'${fileUri}'"], "commandToExecute": "bash ./'$fileName' '$AzureDevOpsURL' '$AzureDevOpsPAT' '$AgentPoolName' '$VMUserName'"}'

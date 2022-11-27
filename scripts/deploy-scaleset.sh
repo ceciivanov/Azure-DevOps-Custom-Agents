@@ -1,12 +1,20 @@
 #!/bin/bash
 
-VMUserName="agentadmin"
-VMUserPassword="Agent001Pa!!"
-VMName="agent"
-resourceGroup="rg-ey-test"
-imageName="linuxImage"
-scaleSetName="Agent"
-location="northeurope"
+# location="northeurope"
+# VMUserName="agentadmin"
+# VMUserPassword="Agent001Pa!!"
+# VMName="agent"
+# resourceGroup="rg-ey-test"
+# imageName="linuxImage"
+# scaleSetName="Agent"
+
+location=$1
+resourceGroup=$2
+managedImageName=$3
+scaleSetName=$4
+VMName=$5
+VMUserName=$6
+VMUserPassword=$7
 
 echo "Create virtual network and subnet"
 az network vnet create \
@@ -71,7 +79,7 @@ az vmss create \
     --resource-group $resourceGroup \
     --name $scaleSetName \
     --location $location \
-    --image $imageName \
+    --image $managedImageName \
     --instance-count 1 \
     --os-disk-caching "None" \
     --upgrade-policy-mode Automatic \
