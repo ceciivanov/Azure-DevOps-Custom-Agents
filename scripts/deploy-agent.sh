@@ -31,7 +31,7 @@ containerName="scripts"
 
 az storage container create --name $containerName --resource-group $resourceGroup  --account-name $storageAccount --account-key "$storageKey" --public-access blob
 
-az storage blob upload --account-key $storageKey --account-name $storageAccount --container-name $containerName --file "./$fileName"
+az storage blob upload --account-key $storageKey --account-name $storageAccount --container-name $containerName --file "./scripts/$fileName"
 
 fileUri="https://$storageAccount.blob.core.windows.net/$containerName/$fileName"
 

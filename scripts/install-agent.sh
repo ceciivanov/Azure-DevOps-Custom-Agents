@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 VMUserName=$4
 
 cd /home/$VMUserName
