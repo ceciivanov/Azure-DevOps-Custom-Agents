@@ -23,4 +23,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     arguments: '$(Location) $(ResourceGroup) $(ScaleSetName) $(VMUserName) $(FileName) $(AgentPoolName) $(AzureDevOpsPAT) $(AzureDevOpsURL)'
-    scriptPath: './deploy-agent.sh'
+    scriptPath: './scripts/deploy-agent.sh'
