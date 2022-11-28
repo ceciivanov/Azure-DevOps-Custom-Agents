@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# location="northeurope"
-# subscriptionId="4b3e8c6e-448a-4a6c-9c1d-106719e46a65"
-# tenantId="e86449d8-e83e-46ab-80ea-727b54c49daa"
-# clientId="ebe966bf-9225-4f22-ab29-4b3eecdfec5b"
-# clientSecret="sPQ8Q~-NtYdXpD~VHNvczYLwthZ1~NtcR6bDkaHp"
-# packerFile="packer.json"
-# resourceGroup="rg-ey-test"
-# imageName="linuxImage"
-
 location=$1
 subscriptionId=$2
 tenantId=$3
@@ -17,15 +8,6 @@ clientSecret=$5
 resourceGroup=$6
 packerFile=$7
 managedImageName=$8
-
-echo $location
-echo $subscriptionId
-echo $tenantId
-echo $clientId
-echo $clientSecret
-echo $resourceGroup
-echo $packerFile
-echo $managedImageName
 
 echo "Create resource group"
 az group create -l $location -n $resourceGroup
