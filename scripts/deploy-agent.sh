@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# VMUserName="agentadmin"
-# resourceGroup="rg-ey-test"
-# scaleSetName="Agent"
-# location="northeurope"
-# fileName="install-agent.sh"
-
 location=$1
 resourceGroup=$2
 scaleSetName=$3
@@ -25,7 +19,6 @@ if [ $availability == "true" ]; then
 fi
 
 storageKey=$(az storage account keys list --account-name $storageAccount -g $resourceGroup --query "[0].value" -o tsv)
-# blobEndpoint=$(az storage account show --name $storageAccount --resource-group $resourceGroup --query primaryEndpoints.blob)
 
 containerName="scripts"
 
@@ -41,4 +34,4 @@ az vmss extension set \
     --name customScript \
     --resource-group $resourceGroup \
     --vmss-name $scaleSetName \
-    --settings '{"fileUris": ["'${fileUri}'"], "commandToExecute": "bash ./'$fileName' '$AzureDevOpsURL' '$AzureDevOpsPAT' '$AgentPoolName' '$VMUserName'"}'
+    --settings '{"fileUris": ["'$fileUri'"], "commandToExecute": "bash ./'$fileName' '$AzureDevOpsURL' '$AzureDevOpsPAT' '$AgentPoolName' '$VMUserName'"}'
