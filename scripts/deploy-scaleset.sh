@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# location="northeurope"
-# VMUserName="agentadmin"
-# VMUserPassword="Agent001Pa!!"
-# VMName="agent"
-# resourceGroup="rg-ey-test"
-# imageName="linuxImage"
-# scaleSetName="Agent"
-
 location=$1
 resourceGroup=$2
 managedImageName=$3
@@ -32,7 +24,7 @@ az network public-ip create \
     --allocation-method Static \
     --location $location
 
-publicIP=$(az network public-ip show -g rg-ey-test -n LoadBalancerPublicIP --query ipAddress)
+publicIP=$(az network public-ip show -g $(resourceGroup) -n LoadBalancerPublicIP --query ipAddress)
 
 echo "Create Load Balancer"
 az network lb create \
